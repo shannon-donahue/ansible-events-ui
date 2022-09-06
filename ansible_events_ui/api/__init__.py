@@ -15,6 +15,7 @@ from ansible_events_ui.managers import (
     taskmanager,
     updatemanager,
 )
+
 from ansible_events_ui.users import (
     bearer_backend,
     cookie_backend,
