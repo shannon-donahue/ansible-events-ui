@@ -19,6 +19,12 @@ from ansible_events_ui.db.dependency import (
 )
 from ansible_events_ui.managers import updatemanager
 from ansible_events_ui.ruleset import activate_rulesets, inactivate_rulesets
+from ansible_events_ui.schema.activation import(
+    ActivationBaseRead,
+    ActivationCreate,
+    ActivationRead,
+    ActivationUpdate
+)
 
 logger = logging.getLogger("ansible_events_ui")
 
@@ -29,11 +35,11 @@ router = APIRouter()
 
 @router.post(
     "/api/activations/",
-    response_model=schemas.ActivationBaseRead,
+    response_model=ActivationBaseRead,
     operation_id="create_activation",
 )
 async def create_activation(
-    activation: schemas.ActivationCreate,
+    activation: ActivationCreate,
     db: AsyncSession = Depends(get_db_session),
 ):
     query = sa.insert(models.activations).values(
@@ -60,7 +66,7 @@ async def create_activation(
 
 @router.get(
     "/api/activation/{activation_id}",
-    response_model=schemas.ActivationRead,
+    response_model=ActivationRead,
     operation_id="show_activation",
 )
 async def read_activation(
@@ -140,12 +146,12 @@ async def read_activation(
 
 @router.patch(
     "/api/activation/{activation_id}",
-    response_model=schemas.ActivationBaseRead,
+    response_model=ActivationBaseRead,
     operation_id="update_activation",
 )
 async def update_activation(
     activation_id: int,
-    activation: schemas.ActivationUpdate,
+    activation: ActivationUpdate,
     db: AsyncSession = Depends(get_db_session),
 ):
     stored_activation = (
