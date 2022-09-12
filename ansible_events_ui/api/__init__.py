@@ -6,7 +6,6 @@ from fastapi import APIRouter, Depends, WebSocket, WebSocketDisconnect
 from sqlalchemy import insert, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ansible_events_ui import schemas
 from ansible_events_ui.db import models
 from ansible_events_ui.db.dependency import get_db_session
 from ansible_events_ui.key import generate_ssh_keys
@@ -15,6 +14,7 @@ from ansible_events_ui.managers import (
     taskmanager,
     updatemanager,
 )
+from ansible_events_ui.schema.user import UserCreate, UserRead, UserUpdate
 from ansible_events_ui.users import (
     bearer_backend,
     cookie_backend,
@@ -234,7 +234,7 @@ router.include_router(
     tags=["auth"],
 )
 router.include_router(
-    fastapi_users.get_register_router(schemas.UserRead, schemas.UserCreate),
+    fastapi_users.get_register_router(UserRead, UserCreate),
     prefix="/api/auth",
     tags=["auth"],
 )
@@ -244,12 +244,12 @@ router.include_router(
     tags=["auth"],
 )
 router.include_router(
-    fastapi_users.get_verify_router(schemas.UserRead),
+    fastapi_users.get_verify_router(UserRead),
     prefix="/api/auth",
     tags=["auth"],
 )
 router.include_router(
-    fastapi_users.get_users_router(schemas.UserRead, schemas.UserUpdate),
+    fastapi_users.get_users_router(UserRead, UserUpdate),
     prefix="/api/users",
     tags=["users"],
 )
