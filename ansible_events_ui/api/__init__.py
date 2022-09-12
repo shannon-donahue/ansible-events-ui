@@ -7,6 +7,7 @@ from sqlalchemy import insert, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from ansible_events_ui import schema
+from ansible_events_ui.config import Settings, get_settings
 from ansible_events_ui.db import models
 from ansible_events_ui.db.dependency import get_db_session
 from ansible_events_ui.key import generate_ssh_keys
