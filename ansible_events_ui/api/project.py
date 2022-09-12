@@ -11,6 +11,8 @@ from ansible_events_ui.db.models.project import (
 )
 from ansible_events_ui.db.models.rulebook import rulebooks
 from ansible_events_ui.project import clone_project, sync_project
+from ansible_events_ui.schema.extra_vars import Extravars
+from ansible_events_ui.schema.inventory import Inventory
 from ansible_events_ui.schema.project import (
     ProjectCreate,
     ProjectDetail,
@@ -18,8 +20,6 @@ from ansible_events_ui.schema.project import (
     ProjectRead,
     ProjectUpdate,
 )
-from ansible_events_ui.schema.inventory import Inventory
-from ansible_events_ui.schema.extra_vars import Extravars
 
 router = APIRouter()
 

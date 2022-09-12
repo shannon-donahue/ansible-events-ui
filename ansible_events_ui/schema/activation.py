@@ -2,10 +2,10 @@ from datetime import datetime
 from typing import Optional
 
 from pydantic import BaseModel, StrictStr
-from schema.extra_vars import ExtravarsRef
-from schema.inventory import InventoryRef
-from schema.playbook import PlaybookRef
-from schema.rulebook import RulebookRef
+from ansible_events_ui.schema.extra_vars import ExtravarsRef
+from ansible_events_ui.schema.inventory import InventoryRef
+from ansible_events_ui.schema.playbook import PlaybookRef
+from ansible_events_ui.schema.rulebook import RulebookRef
 
 
 class RestartPolicy(BaseModel):
